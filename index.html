@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Historial de Ventas</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    body{margin:16px;background:#f6f7fb;color:#111}
+    .card{background:#fff;border:1px solid #e7e9f2;border-radius:12px;padding:14px;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+    label{font-size:12px;color:#444;display:block;margin-bottom:6px}
+    input,select,button{height:36px;border:1px solid #d6daea;border-radius:10px;padding:0 10px;font-size:14px;background:#fff}
+    input,select{min-width:170px}
+    button{cursor:pointer}
+    button.primary{background:#111;color:#fff;border-color:#111}
+    button.ghost{background:#fff}
+    .muted{color:#666;font-size:12px}
+    .topbar{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+    .pill{font-size:12px;background:#eef1ff;border:1px solid #dbe0ff;padding:6px 10px;border-radius:999px}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:10px;border-bottom:1px solid #eef0f6;font-size:13px;text-align:left;white-space:nowrap}
+    th{font-size:12px;color:#444;background:#fafbff;position:sticky;top:0}
+    .tableWrap{max-height:65vh;overflow:auto;border:1px solid #eef0f6;border-radius:12px}
+    .pager{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:10px;flex-wrap:wrap}
+    .pager .left,.pager .right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .small{min-width:auto}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="topbar">
+      <div>
+        <div style="font-size:18px;font-weight:700;">Historial de ventas</div>
+        <div class="muted">Offline + búsqueda rápida (IndexedDB)</div>
+      </div>
+      <div class="pill" id="status">Estado: listo</div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Código (opcional)</label>
+        <input id="fCodigo" placeholder="Ej: 101" />
+      </div>
+
+      <div>
+        <label>Rango</label>
+        <select id="fRango">
+          <option value="all">Todas</option>
+          <option value="30">Últimos 30 días</option>
+          <option value="90">Últimos 90 días</option>
+          <option value="365">Últimos 12 meses</option>
+          <option value="custom">Personalizado</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Desde</label>
+        <input id="fDesde" type="date" disabled />
+      </div>
+
+      <div>
+        <label>Hasta</label>
+        <input id="fHasta" type="date" disabled />
+      </div>
+
+      <div>
+        <label>Buscar por</label>
+        <select id="fCampo">
+          <option value="codigo">Código</option>
+          <option value="descripcion">Descripción</option>
+          <option value="cod_cliente">Cód. Cliente</option>
+          <option value="cliente">Cliente</option>
+          <option value="vendedor">Vendedor</option>
+          <option value="factura">Factura</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Texto</label>
+        <input id="fTexto" placeholder="Escribe para buscar..." />
+      </div>
+
+      <div class="row" style="gap:8px">
+        <button class="primary small" id="btnBuscar">Buscar</button>
+        <button class="ghost small" id="btnLimpiar">Limpiar</button>
+        <button class="ghost small" id="btnMostrarTodo">Mostrar todo</button>
+      </div>
+
+      <div style="margin-left:auto">
+        <label>&nbsp;</label>
+        <button class="ghost small" id="btnReimportar">Reimportar JSON</button>
+      </div>
+    </div>
+
+    <div class="tableWrap" style="margin-top:12px">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th>Cód. Cliente</th>
+            <th>Vendedor</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Factura</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+
+    <div class="pager">
+      <div class="left">
+        <span class="muted" id="info"></span>
+      </div>
+      <div class="right">
+        <button class="ghost small" id="prev">Anterior</button>
+        <span class="muted" id="page"></span>
+        <button class="ghost small" id="next">Siguiente</button>
+        <select class="small" id="pageSize">
+          <option value="25">25</option>
+          <option value="50" selected>50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
