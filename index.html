@@ -26,13 +26,15 @@
     .pager .left,.pager .right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     .small{min-width:auto}
   </style>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#111111">
 </head>
 <body>
   <div class="card">
     <div class="topbar">
       <div>
         <div style="font-size:18px;font-weight:700;">Historial de ventas</div>
-        <div class="muted">Offline + búsqueda rápida (IndexedDB)</div>
+        <div class="muted">Offline + búsqueda rápida v1.0</div>
       </div>
       <div class="pill" id="status">Estado: listo</div>
     </div>
@@ -130,5 +132,12 @@
   </div>
 
   <script src="./app.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js");
+    });
+  }
+</script>
 </body>
 </html>
