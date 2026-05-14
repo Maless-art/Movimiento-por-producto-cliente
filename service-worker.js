@@ -1,4 +1,4 @@
-const CACHE = "ventas-cache-v1";
+const CACHE = "ventas-cache-v1.0.1 - Res.1.4";
 
 const ASSETS = [
   "./",
