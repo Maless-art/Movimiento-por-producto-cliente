@@ -1,4 +1,5 @@
-const CACHE = "ventas-cache-v1.0.1 - Res.1.5.1";
+const CACHE = "ventas-cache-v1.0.2 - Res.1.5.1";
+//En esta versión se corrigió error al leer historial.min.json
 // Siguiente actualización cambia a 1.6
 
 const ASSETS = [
@@ -6,9 +7,9 @@ const ASSETS = [
   "./index.html",
   "./app.js",
   "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./ventas.json" // si lo usas
+  "./icon-192.png",
+  "./icon-512.png",
+  "./historial.min.json"
 ];
 
 self.addEventListener("install", (e) => {
