@@ -1,4 +1,5 @@
-const CACHE = "ventas-cache-v1.0.1 - Res.1.5";
+const CACHE = "ventas-cache-v1.0.1 - Res.1.5.1";
+// Siguiente actualización cambia a 1.6
 
 const ASSETS = [
   "./",
