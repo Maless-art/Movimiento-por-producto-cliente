@@ -1,4 +1,4 @@
-const CACHE = "ventas-cache-v1.0.2 - Res.1.5.1";
+const CACHE = "ventas-cache-v1.2 - Res.1.5.1";
 //En esta versión se corrigió error al leer historial.min.json
 // Siguiente actualización cambia a 1.6
 
